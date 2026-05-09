@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LANAUTICA Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="login-gate" id="loginGate">
+  <div class="login-box">
+    <h1>LANAUTICA</h1>
+    <p>Admin Panel</p>
+    <div class="login-input-wrap">
+      <input type="password" 
+             class="login-input" 
+             id="loginPass" 
+             placeholder="Masukkan password" 
+             autocomplete="off">
+      <button type="button" 
+              class="login-eye" 
+              id="loginEye" 
+              aria-label="Tampilkan password">
+        <svg viewBox="0 0 24 24">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </button>
+    </div>
+    <button class="login-btn" id="loginBtn">Masuk</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<div class="admin" id="adminPanel">
+  <div class="admin-header">
+    <div class="admin-title">LANAUTICA Admin</div>
+    <div class="admin-actions">
+      <button class="btn-sm" onclick="refreshAll()">Refresh</button>
+      <button class="btn-sm danger" onclick="logout()">Logout</button>
+    </div>
+  </div>
+  
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="switchTab('jadwal')">Jadwal</button>
+    <button class="admin-tab" onclick="switchTab('galeri')">Galeri</button>
+    <button class="admin-tab" onclick="switchTab('hashtag')">Hashtag</button>
+  </div>
+
+  <div class="tab-content active" id="tabJadwal">
+    <div id="jadwalHome">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-val" id="statTotal">0</div>
+          <div class="stat-lbl">Total</div>
+        </div>
+        <div class="stat s-teater">
+          <div class="stat-val" id="statTeater">0</div>
+          <div class="stat-lbl">Teater</div>
+        </div>
+        <div class="stat s-event">
+          <div class="stat-val" id="statEvent">0</div>
+          <div class="stat-lbl">Event</div>
+        </div>
+        <div class="stat s-digital">
+          <div class="stat-val" id="statDigital">0</div>
+          <div class="stat-lbl">Digital</div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h2>
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="16"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+          </svg>
+          Tambah Jadwal
+        </h2>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label class="form-label">Nama Kegiatan</label>
+            <div class="album-dd" id="fNamaDD">
+              <div class="album-dd-trigger" id="fNamaTrigger">
+                <input type="text" 
+                       class="album-dd-input" 
+                       id="fNamaSearch" 
+                       placeholder="Ketik untuk cari atau tambah baru..." 
+                       autocomplete="off">
+                <button type="button" class="album-dd-arrow" id="fNamaArrow" tabindex="-1">
+                  <svg viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="album-dd-list" id="fNamaList"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tipe</label>
+            <select class="form-select" id="fTipe">
+              <option value="teater">Teater</option>
+              <option value="event">Event</option>
+              <option value="digital">Digital</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tanggal</label>
+            <input type="date" class="form-input" id="fTanggal">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Jam</label>
+            <input type="time" class="form-input" id="fJam" value="14:00">
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Deskripsi</label>
+            <input type="text" 
+                   class="form-input" 
+                   id="fDesc" 
+                   placeholder="cth: Pertunjukan teater rutin">
+          </div>
+        </div>
+        <div class="form-row">
+          <button class="btn-submit" id="addJBtn" onclick="addJadwal()">Tambah</button>
+          <label class="quick-toggle">
+            <input type="checkbox" id="quickJ" checked>Quick Add
+          </label>
+          <button class="btn-sm" onclick="resetJForm()" style="margin-left:auto">Reset</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="table-section">
+      <div class="table-header">
+        <div style="display:flex; align-items:center; gap:10px">
+          <button class="back-btn j-hide" id="jadwalBack" onclick="exitJadwalFull()">
+            <svg viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Kembali
+          </button>
+          <h2>
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            Data Jadwal
+          </h2>
+        </div>
+        <input type="text" 
+               class="search-box" 
+               id="searchJ" 
+               placeholder="Cari..." 
+               oninput="onJadwalSearch()">
+      </div>
+      <div class="table-wrap">
+        <table class="jadwal-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Kegiatan</th>
+              <th>Tipe</th>
+              <th>Tanggal</th>
+              <th>Jam</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="jadwalBody"></tbody>
+        </table>
+      </div>
+      <div id="jadwalFooter"></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tabGaleri">
+    <div id="galeriHome">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-val" id="gStatTotal">0</div>
+          <div class="stat-lbl">Total Foto</div>
+        </div>
+        <div class="stat s-lana">
+          <div class="stat-val" id="gStatLana">0</div>
+          <div class="stat-lbl">Lana</div>
+        </div>
+        <div class="stat s-lanautica">
+          <div class="stat-val" id="gStatLanautica">0</div>
+          <div class="stat-lbl">LANAUTICA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val" id="gStatAlbum">0</div>
+          <div class="stat-lbl">Album</div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h2>
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          Tambah Foto
+        </h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Kategori</label>
+            <select class="form-select cat-select" id="gCat" onchange="onCategoryChange('add')">
+              <option value="lana">Lana</option>
+              <option value="lanautica">LANAUTICA</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Pilih Folder / Buat Baru</label>
+            <div class="album-dd" id="gAlbumDD">
+              <div class="album-dd-trigger" id="gAlbumTrigger">
+                <input type="text" 
+                       class="album-dd-input" 
+                       id="gAlbumSearch" 
+                       placeholder="Ketik nama folder baru..." 
+                       autocomplete="off">
+                <button type="button" class="album-dd-arrow" id="gAlbumArrow" tabindex="-1">
+                  <svg viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="album-dd-list" id="gAlbumList"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Label</label>
+            <input type="text" class="form-input locked auto-filled" id="gLabel" readonly tabindex="-1">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Alt Teks</label>
+            <input type="text" class="form-input locked auto-filled" id="gAlt" readonly tabindex="-1">
+          </div>
+          <div class="form-group full" id="gBasePathWrap" style="display:none">
+            <label class="form-label">Base Path</label>
+            <div class="base-path-tag" id="gBasePathTag">
+              <svg viewBox="0 0 24 24">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              </svg>
+              <span id="gBasePathText"></span>
+            </div>
+          </div>
+          <div class="form-group full" id="gRangeWrap" style="display:none">
+            <label class="form-label">Nomor File (Range)</label>
+            <div class="range-row">
+              <input type="number" 
+                     class="form-input" 
+                     id="gFileStart" 
+                     min="1" 
+                     placeholder="Dari" 
+                     oninput="generateFilenames()">
+              <span style="color:var(--muted)">sampai</span>
+              <input type="number" 
+                     class="form-input" 
+                     id="gFileEnd" 
+                     min="1" 
+                     placeholder="Sampai" 
+                     oninput="generateFilenames()">
+            </div>
+          </div>
+          <div class="form-group full">
+            <label class="form-label" id="gPathLabel">Filename / Path Foto</label>
+            <textarea class="form-input" 
+                      id="gSrc" 
+                      rows="3" 
+                      placeholder="Akan terisi otomatis dari range, atau ketik manual..." 
+                      style="resize:vertical"></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <button class="btn-submit" id="addGBtn" onclick="addGaleri()">Tambah</button>
+          <label class="quick-toggle">
+            <input type="checkbox" id="quickG" checked>Quick Add
+          </label>
+          <button class="btn-sm" onclick="resetGForm()" style="margin-left:auto">Reset</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="table-section">
+      <div class="table-header">
+        <div style="display:flex; align-items:center; gap:10px">
+          <button class="back-btn j-hide" id="galeriBack" onclick="galeriGoBack()">
+            <svg viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Kembali
+          </button>
+          <h2>
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span id="galeriTableTitle">Data Galeri</span>
+          </h2>
+        </div>
+        <input type="text" 
+               class="search-box" 
+               id="searchG" 
+               placeholder="Cari..." 
+               oninput="onGaleriSearch()">
+      </div>
+      <div class="detail-bar j-hide" id="galeriDetailBar">
+        <span class="folder-badge" id="galeriDetailBadge"></span>
+        <span class="detail-label" id="galeriDetailName"></span>
+        <span class="detail-count" id="galeriDetailCount"></span>
+      </div>
+      <div class="table-wrap" id="galeriTableWrap"></div>
+      <div id="galeriFooter"></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tabHashtag">
+    <div id="hashtagHome">
+      <div class="stats stats-2col">
+        <div class="stat">
+          <div class="stat-val" id="hStatTotal">0</div>
+          <div class="stat-lbl">Total Hashtag</div>
+        </div>
+        <div class="stat s-lana">
+          <div class="stat-val" id="hStatDesc">0</div>
+          <div class="stat-lbl">Dengan Deskripsi</div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h2>
+          <svg viewBox="0 0 24 24">
+            <line x1="4" y1="9" x2="20" y2="9"/>
+            <line x1="4" y1="15" x2="20" y2="15"/>
+            <line x1="10" y1="3" x2="8" y2="21"/>
+            <line x1="16" y1="3" x2="14" y2="21"/>
+          </svg>
+          Tambah Hashtag
+        </h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Hashtag</label>
+            <div class="input-prefix-wrap">
+              <span class="input-prefix">#</span>
+              <input type="text" 
+                     class="form-input has-prefix" 
+                     id="hTag" 
+                     placeholder="contohhashtag" 
+                     autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Deskripsi</label>
+            <input type="text" 
+                   class="form-input" 
+                   id="hDesk" 
+                   placeholder="Deskripsi singkat hashtag...">
+          </div>
+        </div>
+        <div class="form-row">
+          <button class="btn-submit" id="addHBtn" onclick="addHashtag()">Tambah</button>
+          <label class="quick-toggle">
+            <input type="checkbox" id="quickH" checked>Quick Add
+          </label>
+          <button class="btn-sm" onclick="resetHForm()" style="margin-left:auto">Reset</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="table-section">
+      <div class="table-header">
+        <div style="display:flex; align-items:center; gap:10px">
+          <button class="back-btn j-hide" id="hashtagBack" onclick="exitHashtagFull()">
+            <svg viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Kembali
+          </button>
+          <h2>
+            <svg viewBox="0 0 24 24">
+              <line x1="4" y1="9" x2="20" y2="9"/>
+              <line x1="4" y1="15" x2="20" y2="15"/>
+              <line x1="10" y1="3" x2="8" y2="21"/>
+              <line x1="16" y1="3" x2="14" y2="21"/>
+            </svg>
+            Data Hashtag
+          </h2>
+        </div>
+        <input type="text" 
+               class="search-box" 
+               id="searchH" 
+               placeholder="Cari..." 
+               oninput="onHashtagSearch()">
+      </div>
+      <div class="table-wrap">
+        <table class="hashtag-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Hashtag</th>
+              <th>Deskripsi</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="hashtagBody"></tbody>
+        </table>
+      </div>
+      <div id="hashtagFooter"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="editJModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Edit Jadwal</h3>
+      <button class="modal-close" onclick="closeModal('editJModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">Nama</label>
+          <div class="album-dd" id="eNamaDD">
+            <div class="album-dd-trigger" id="eNamaTrigger">
+              <input type="text" 
+                     class="album-dd-input" 
+                     id="eNamaSearch" 
+                     placeholder="Ketik untuk cari atau tambah baru..." 
+                     autocomplete="off">
+              <button type="button" class="album-dd-arrow" id="eNamaArrow" tabindex="-1">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+            </div>
+            <div class="album-dd-list" id="eNamaList"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipe</label>
+          <select class="form-select" id="eTipe">
+            <option value="teater">Teater</option>
+            <option value="event">Event</option>
+            <option value="digital">Digital</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tanggal</label>
+          <input type="date" class="form-input" id="eTanggal">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jam</label>
+          <input type="time" class="form-input" id="eJam">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Deskripsi</label>
+          <input type="text" class="form-input" id="eDesc">
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeModal('editJModal')">Batal</button>
+      <button class="btn-save" onclick="saveEditJ()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="editGModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Edit Foto</h3>
+      <button class="modal-close" onclick="closeModal('editGModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Kategori</label>
+          <select class="form-select cat-select" id="egCat" onchange="onCategoryChange('edit')">
+            <option value="lana">Lana</option>
+            <option value="lanautica">LANAUTICA</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Pilih Folder</label>
+          <div class="album-dd" id="egAlbumDD">
+            <div class="album-dd-trigger" id="egAlbumTrigger">
+              <input type="text" 
+                     class="album-dd-input" 
+                     id="egAlbumSearch" 
+                     placeholder="Ketik untuk cari folder baru..." 
+                     autocomplete="off">
+              <button type="button" class="album-dd-arrow" id="egAlbumArrow" tabindex="-1">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+            </div>
+            <div class="album-dd-list" id="egAlbumList"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Label</label>
+          <input type="text" class="form-input locked auto-filled" id="egLabel" readonly tabindex="-1">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Alt Teks</label>
+          <input type="text" class="form-input locked auto-filled" id="egAlt" readonly tabindex="-1">
+        </div>
+        <div class="form-group full" id="egBasePathWrap" style="display:none">
+          <label class="form-label">Base Path</label>
+          <div class="base-path-tag" id="egBasePathTag">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span id="egBasePathText"></span>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Path Foto</label>
+          <input type="text" class="form-input" id="egSrc">
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeModal('editGModal')">Batal</button>
+      <button class="btn-save" onclick="saveEditG()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="editHModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Edit Hashtag</h3>
+      <button class="modal-close" onclick="closeModal('editHModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Hashtag</label>
+          <div class="input-prefix-wrap">
+            <span class="input-prefix">#</span>
+            <input type="text" 
+                   class="form-input has-prefix" 
+                   id="ehTag" 
+                   placeholder="contohhashtag" 
+                   autocomplete="off">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Deskripsi</label>
+          <input type="text" 
+                 class="form-input" 
+                 id="ehDesk" 
+                 placeholder="Deskripsi singkat hashtag...">
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeModal('editHModal')">Batal</button>
+      <button class="btn-save" onclick="saveEditH()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:380px">
+    <div class="modal-head">
+      <h3>Hapus</h3>
+      <button class="modal-close" onclick="closeModal('deleteModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p id="deleteMsg" style="font-size:.88rem; color:var(--muted); line-height:1.6"></p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeModal('deleteModal')">Batal</button>
+      <button class="btn-confirm" id="deleteConfirmBtn">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastBox"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>

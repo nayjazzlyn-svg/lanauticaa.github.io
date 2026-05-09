@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>LANAUTICA ☾.</title>
+  <link rel="icon" type="image/png" href="Lana/3.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="lana.css">
+</head>
+<body>
+
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <div class="mobile-menu-brand-logo">
+        <img src="Lana/3.jpeg" alt="LANAUTICA">
+      </div>
+      <div class="mobile-menu-brand-text">LANAUTICA</div>
+    </div>
+    <div class="mobile-menu-nav">
+      <div class="mobile-menu-link"
+        onclick="mobileNavTo('hero')">
+        <div class="mobile-menu-link-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <span class="mobile-menu-link-text">Home</span>
+      </div>
+
+      <div class="mobile-menu-divider"></div>
+
+      <div class="mobile-menu-link"
+        data-section="profile"
+        onclick="mobileNavTo('profile')">
+        <div class="mobile-menu-link-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <span class="mobile-menu-link-text">
+          About Lana
+        </span>
+        <svg class="mobile-menu-link-arrow"
+          viewBox="0 0 24 24">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </div>
+
+      <div class="mobile-menu-link"
+        data-section="reschedule"
+        onclick="mobileNavTo('reschedule')">
+        <div class="mobile-menu-link-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <span class="mobile-menu-link-text">
+          Reschedule
+        </span>
+        <svg class="mobile-menu-link-arrow"
+          viewBox="0 0 24 24">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </div>
+
+      <div class="mobile-menu-link"
+        data-section="fanbase"
+        onclick="mobileNavTo('fanbase')">
+        <div class="mobile-menu-link-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <span class="mobile-menu-link-text">
+          Fanbase
+        </span>
+        <svg class="mobile-menu-link-arrow"
+          viewBox="0 0 24 24">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </div>
+
+      <div class="mobile-menu-link"
+        data-section="gallery"
+        onclick="mobileNavTo('gallery')">
+        <div class="mobile-menu-link-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <span class="mobile-menu-link-text">
+          Galeri
+        </span>
+        <svg class="mobile-menu-link-arrow"
+          viewBox="0 0 24 24">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </div>
+    </div>
+    <div class="mobile-menu-footer">
+      &copy; 2026 LANAUTICA
+    </div>
+  </div>
+
+  <div class="topnav" id="topnav">
+    <div class="topnav-brand" onclick="backToHero()">
+      <div class="topnav-brand-logo">
+        <img src="Lana/3.jpeg" alt="LANAUTICA">
+      </div>
+      <div class="topnav-brand-text">
+        LANAUTICA <span class="brand-moon">☾</span>
+      </div>
+    </div>
+
+    <div class="topnav-links">
+      <a class="topnav-link home-link"
+        onclick="backToHero()">Home</a>
+      <div class="topnav-spacer"></div>
+      <a class="topnav-link"
+        onclick="showSection('profile')"
+        data-section="profile">About Lana</a>
+      <a class="topnav-link"
+        onclick="showSection('reschedule')"
+        data-section="reschedule">Reschedule</a>
+      <a class="topnav-link"
+        onclick="showSection('fanbase')"
+        data-section="fanbase">Fanbase</a>
+      <a class="topnav-link"
+        onclick="showSection('gallery')"
+        data-section="gallery">Galeri</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn"
+      aria-label="Menu">
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+  </div>
+
+  <section class="hero" id="heroSection">
+    <div class="hero-bg"></div>
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-img-wrap">
+        <div class="hero-img-glow"></div>
+        <img src="Lana/1.png" class="hero-img" alt="Lana">
+      </div>
+      <div class="hero-text">
+        <h1>LANAUTICA ִֶָ࣪☾.</h1>
+        <div class="quotes-box">
+          <span class="quotes-mark">"</span>
+          <p>Dengan kekuatan bulan,
+            aku akan menyihirmu dengan pesonaku</p>
+        </div>
+        <button class="btn-enter" onclick="enterSite()">
+          Masuk
+        </button>
+      </div>
+    </div>
+    <div class="hero-footer">&copy; 2026 LANAUTICA</div>
+  </section>
+
+  <main class="content" id="mainContent">
+
+    <section id="profile" class="section">
+      <div class="section-header">
+        <h2>About Lana</h2>
+      </div>
+
+      <div class="card profile-container">
+        <div class="profile-img-wrap">
+          <img src="Lana/2.jpeg" class="profile-img"
+            alt="Lana">
+        </div>
+        <div class="biodata">
+          <div class="biodata-title">Aurhel Alana</div>
+          <div class="biodata-list">
+            <div class="biodata-item">
+              <span class="biodata-label">☘︎ Nama Panggilan</span>
+              <span class="biodata-value">Lana</span>
+            </div>
+            <div class="biodata-item">
+              <span class="biodata-label">☘︎ Tanggal Lahir</span>
+              <span class="biodata-value">14 September 2006</span>
+            </div>
+            <div class="biodata-item">
+              <span class="biodata-label">☘︎ Tinggi Badan</span>
+              <span class="biodata-value">162 cm</span>
+            </div>
+            <div class="biodata-item">
+              <span class="biodata-label">☘︎ Golongan Darah</span>
+              <span class="biodata-value">A</span>
+            </div>
+            <div class="biodata-item">
+              <span class="biodata-label">☘︎ Horoskop</span>
+              <span class="biodata-value">Virgo</span>
+            </div>
+            <div class="biodata-item">
+              <span class="biodata-label">☘︎ Team</span>
+              <span class="biodata-value">Love&#9829;</span>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.instagram.com/jkt48.lana.a"
+              target="_blank" rel="noopener" class="ig"
+              aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.088 4.088 0 0 1 1.523.99 4.088 4.088 0 0 1 .99 1.524c.163.46.35 1.26.403 2.428.058 1.267.07 1.647.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.088 4.088 0 0 1-.99 1.523 4.088 4.088 0 0 1-1.524.99c-.46.163-1.26.35-2.428.403-1.267.058-1.647.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.088 4.088 0 0 1-1.523-.99 4.088 4.088 0 0 1-.99-1.524c-.163-.46-.35-1.26-.403-2.428C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.088 4.088 0 0 1 .99-1.523A4.088 4.088 0 0 1 5.15 2.207c.46-.163 1.26-.35 2.428-.403C8.846 2.175 9.226 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.131 4.903.333 4.14.63a5.876 5.876 0 0 0-2.126 1.384A5.876 5.876 0 0 0 .63 4.14C.333 4.903.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.059 1.277.261 2.149.558 2.913a5.876 5.876 0 0 0 1.384 2.126A5.876 5.876 0 0 0 4.14 23.37c.763.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.059 2.149-.261 2.913-.558a5.876 5.876 0 0 0 2.126-1.384 5.876 5.876 0 0 0 1.384-2.126c.296-.763.499-1.636.558-2.913C23.986 15.667 24 15.259 24 12s-.014-3.667-.072-4.947c-.059-1.277-.261-2.149-.558-2.913a5.876 5.876 0 0 0-1.384-2.126A5.876 5.876 0 0 0 19.86.63C19.097.333 18.224.131 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a href="https://x.com/AR_LanaJKT48"
+              target="_blank" rel="noopener" class="x"
+              aria-label="X">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@jkt48.lana"
+              target="_blank" rel="noopener" class="tt"
+              aria-label="TikTok">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.69a8.17 8.17 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.12z"/></svg>
+            </a>
+            <a href="https://idn-app.idn.link/s/profile-mr8ure"
+              target="_blank" rel="noopener" class="idn"
+              aria-label="IDN">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18"
+                  rx="5" ry="5" fill="none"
+                  stroke="currentColor" stroke-width="1.5"/>
+                <text x="12" y="16" text-anchor="middle"
+                  font-size="7" font-weight="700"
+                  fill="currentColor"
+                  font-family="Arial,sans-serif">IDN</text>
+              </svg>
+            </a>
+            <a href="https://www.showroom-live.com/r/JKT48_Lana?t=1777993057"
+              target="_blank" rel="noopener" class="sr"
+              aria-label="Showroom">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="none"
+                  stroke="currentColor" stroke-width="1.5"/>
+                <polygon points="10,7 17,12 10,17"
+                  fill="currentColor"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sched-section">
+        <div class="sched-section-title">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18"
+              rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Schedule Lana
+        </div>
+        <div class="sched-summary" id="schedSummary"></div>
+        <div class="sched-table-wrap">
+          <div class="sched-table-header">
+            <span>No</span>
+            <span>Kegiatan</span>
+            <span>Tanggal</span>
+            <span>Jam</span>
+            <span>Status</span>
+          </div>
+          <div id="schedContent"></div>
+        </div>
+      </div>
+
+      <div class="hashtag-section" id="hashtagSection">
+        <div class="hashtag-section-title">
+          <svg viewBox="0 0 24 24">
+            <line x1="4" y1="9" x2="20" y2="9"/>
+            <line x1="4" y1="15" x2="20" y2="15"/>
+            <line x1="10" y1="3" x2="8" y2="21"/>
+            <line x1="16" y1="3" x2="14" y2="21"/>
+          </svg>
+          Hashtag Lana
+        </div>
+        <div class="hashtag-table-wrap">
+          <div class="hashtag-table-header">
+            <span>No</span>
+            <span>Keterangan</span>
+            <span>Hashtag</span>
+          </div>
+          <div id="hashtagContent"></div>
+        </div>
+        <div id="hashtagSeeMoreWrap"></div>
+      </div>
+
+      <div class="quick-nav">
+        <div class="quick-nav-title">
+          Jelajahi Lebih Lanjut
+        </div>
+        <div class="quick-nav-grid">
+          <div class="quick-nav-card"
+            onclick="showSection('hashtags')">
+            <div class="quick-nav-icon">
+              <svg viewBox="0 0 24 24">
+                <line x1="4" y1="9" x2="20" y2="9"/>
+                <line x1="4" y1="15" x2="20" y2="15"/>
+                <line x1="10" y1="3" x2="8" y2="21"/>
+                <line x1="16" y1="3" x2="14" y2="21"/>
+              </svg>
+            </div>
+            <div class="quick-nav-info">
+              <div class="quick-nav-name">Hashtag Lana</div>
+              <div class="quick-nav-desc">
+                Semua hashtag resmi Lana
+              </div>
+            </div>
+            <svg class="quick-nav-arrow" viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+
+          <div class="quick-nav-card"
+            onclick="showSection('reschedule')">
+            <div class="quick-nav-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+            </div>
+            <div class="quick-nav-info">
+              <div class="quick-nav-name">
+                Reschedule Lana
+              </div>
+              <div class="quick-nav-desc">
+                Jadwal Lana yang sudah selesai
+              </div>
+            </div>
+            <svg class="quick-nav-arrow" viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+
+          <div class="quick-nav-card"
+            onclick="showSection('fanbase')">
+            <div class="quick-nav-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="quick-nav-info">
+              <div class="quick-nav-name">Fanbase</div>
+              <div class="quick-nav-desc">
+                Tentang LANAUTICA
+              </div>
+            </div>
+            <svg class="quick-nav-arrow" viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hashtags" class="section">
+      <div class="section-header">
+        <button class="back-btn"
+          onclick="showSection('profile')"
+          aria-label="Kembali">
+          <svg viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <h2>Hashtag Lana</h2>
+      </div>
+
+      <div class="ht-page-banner">
+        <div class="ht-page-banner-inner">
+          <div class="ht-page-icon">
+            <svg viewBox="0 0 24 24">
+              <line x1="4" y1="9" x2="20" y2="9"/>
+              <line x1="4" y1="15" x2="20" y2="15"/>
+              <line x1="10" y1="3" x2="8" y2="21"/>
+              <line x1="16" y1="3" x2="14" y2="21"/>
+            </svg>
+          </div>
+          <div class="ht-page-banner-text">
+            <div class="ht-page-title">
+              Semua Hashtag Lana
+            </div>
+            <div class="ht-page-subtitle">
+              Daftar hashtag resmi untuk
+              mendukung Lana
+            </div>
+            <div class="ht-page-badge">
+              <span class="ht-page-badge-dot"></span>
+              <span id="htTotalBadge">0</span> Hashtag
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ht-search-wrap">
+        <svg class="ht-search-icon" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" class="ht-search" id="htSearch"
+          placeholder="Cari hashtag..."
+          oninput="filterHashtags()">
+      </div>
+
+      <div class="ht-grid" id="htGrid"></div>
+    </section>
+
+    <section id="reschedule" class="section">
+      <div class="reschedule-view active"
+        id="rescheduleListView">
+        <div class="section-header">
+          <h2>Reschedule Lana</h2>
+        </div>
+        <div class="reschedule-summary">
+          <div class="reschedule-summary-stat">
+            <span class="reschedule-summary-value"
+              id="rescheduleTotal">0</span>
+            <span class="reschedule-summary-label">
+              Total</span>
+          </div>
+          <div class="reschedule-summary-divider"></div>
+          <div class="reschedule-summary-stat">
+            <span class="reschedule-summary-value"
+              id="rescheduleTeater">0</span>
+            <span class="reschedule-summary-label">
+              Teater</span>
+          </div>
+          <div class="reschedule-summary-divider"></div>
+          <div class="reschedule-summary-stat">
+            <span class="reschedule-summary-value"
+              id="rescheduleEvent">0</span>
+            <span class="reschedule-summary-label">
+              Event</span>
+          </div>
+          <div class="reschedule-summary-divider"></div>
+          <div class="reschedule-summary-stat">
+            <span class="reschedule-summary-value"
+              id="rescheduleDigital">0</span>
+            <span class="reschedule-summary-label">
+              Digital</span>
+          </div>
+        </div>
+        <div class="reschedule-list"
+          id="rescheduleList"></div>
+      </div>
+      <div class="reschedule-view"
+        id="rescheduleDetailView"></div>
+    </section>
+
+    <section id="fanbase" class="section">
+      <div class="section-header">
+        <h2>Tentang Fanbase</h2>
+      </div>
+
+      <div class="fb-banner">
+        <div class="fb-banner-inner">
+          <div class="fb-logo-wrap">
+            <div class="fb-logo-glow"></div>
+            <img src="3.jpeg" class="fb-logo"
+              alt="Logo LANAUTICA">
+          </div>
+          <div class="fb-banner-text">
+            <div class="fb-name">LANAUTICA</div>
+            <div class="fb-tagline">
+              Official Fanbase of Aurhel Alana
+            </div>
+            <div class="fb-badge">
+              <span class="fb-badge-dot"></span>
+              Active Fanbase
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fb-stats">
+        <div class="fb-stat">
+          <div class="fb-stat-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="fb-stat-label">Fanbase</div>
+          <div class="fb-stat-value">LANAUTICA</div>
+        </div>
+        <div class="fb-stat">
+          <div class="fb-stat-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18"
+                rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div class="fb-stat-label">Berdiri</div>
+          <div class="fb-stat-value">Nov 2023</div>
+        </div>
+        <div class="fb-stat">
+          <div class="fb-stat-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <div class="fb-stat-label">Oshi</div>
+          <div class="fb-stat-value">Aurhel Alana</div>
+        </div>
+        <div class="fb-stat">
+          <div class="fb-stat-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="fb-stat-label">Member</div>
+          <div class="fb-stat-value">224</div>
+        </div>
+      </div>
+
+      <div class="card fb-socials-card">
+        <div class="fb-socials-title">
+          Sosial Media Fanbase
+        </div>
+        <div class="fb-socials-list">
+          <a href="https://www.instagram.com/lanautica_ofc"
+            target="_blank" rel="noopener"
+            class="fb-social-item ig">
+            <div class="fb-social-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.088 4.088 0 0 1 1.523.99 4.088 4.088 0 0 1 .99 1.524c.163.46.35 1.26.403 2.428.058 1.267.07 1.647.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.088 4.088 0 0 1-.99 1.523 4.088 4.088 0 0 1-1.524.99c-.46.163-1.26.35-2.428.403-1.267.058-1.647.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.088 4.088 0 0 1-1.523-.99 4.088 4.088 0 0 1-.99-1.524c-.163-.46-.35-1.26-.403-2.428C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.088 4.088 0 0 1 .99-1.523A4.088 4.088 0 0 1 5.15 2.207c.46-.163 1.26-.35 2.428-.403C8.846 2.175 9.226 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.131 4.903.333 4.14.63a5.876 5.876 0 0 0-2.126 1.384A5.876 5.876 0 0 0 .63 4.14C.333 4.903.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.059 1.277.261 2.149.558 2.913a5.876 5.876 0 0 0 1.384 2.126A5.876 5.876 0 0 0 4.14 23.37c.763.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.059 2.149-.261 2.913-.558a5.876 5.876 0 0 0 2.126-1.384 5.876 5.876 0 0 0 1.384-2.126c.296-.763.499-1.636.558-2.913C23.986 15.667 24 15.259 24 12s-.014-3.667-.072-4.947c-.059-1.277-.261-2.149-.558-2.913a5.876 5.876 0 0 0-1.384-2.126A5.876 5.876 0 0 0 19.86.63C19.097.333 18.224.131 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </div>
+            <div class="fb-social-item-text">
+              <div class="fb-social-item-name">
+                Instagram
+              </div>
+              <div class="fb-social-item-handle">
+                @lanautica_ofc
+              </div>
+            </div>
+            <svg class="fb-social-item-arrow"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+
+          <a href="https://x.com/Lanautica_OFC"
+            target="_blank" rel="noopener"
+            class="fb-social-item x">
+            <div class="fb-social-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <div class="fb-social-item-text">
+              <div class="fb-social-item-name">
+                X (Twitter)
+              </div>
+              <div class="fb-social-item-handle">
+                @Lanautica_OFC
+              </div>
+            </div>
+            <svg class="fb-social-item-arrow"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+
+          <a href="https://www.tiktok.com/@lanautica_ofc"
+            target="_blank" rel="noopener"
+            class="fb-social-item tt">
+            <div class="fb-social-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.69a8.17 8.17 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.12z"/></svg>
+            </div>
+            <div class="fb-social-item-text">
+              <div class="fb-social-item-name">TikTok</div>
+              <div class="fb-social-item-handle">
+                @lanautica_ofc
+              </div>
+            </div>
+            <svg class="fb-social-item-arrow"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="gal-root-tabs" id="galRootTabs">
+        <button class="gal-root-tab active"
+          data-folder="lana"
+          onclick="switchRootFolder('lana')">
+          <span class="gal-root-tab-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </span>
+          <span class="gal-root-tab-label">Lana</span>
+          <span class="gal-root-tab-count">0</span>
+        </button>
+        <button class="gal-root-tab"
+          data-folder="lanautica"
+          onclick="switchRootFolder('lanautica')">
+          <span class="gal-root-tab-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </span>
+          <span class="gal-root-tab-label">LANAUTICA</span>
+          <span class="gal-root-tab-count">0</span>
+        </button>
+      </div>
+      <div id="galContent"></div>
+    </section>
+
+    <footer class="site-footer">
+      &copy; 2026 LANAUTICA Fanbase
+    </footer>
+  </main>
+
+  <button class="back-to-top" id="backToTop"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label="Kembali ke atas">
+    <svg viewBox="0 0 24 24">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-backdrop"
+      onclick="closeLightbox()"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close"
+        onclick="closeLightbox()"
+        aria-label="Tutup">&times;</button>
+      <button class="lb-nav lb-prev disabled"
+        id="lbPrev"
+        onclick="event.stopPropagation();lightboxNav(-1)"
+        aria-label="Sebelumnya">
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <img src="" alt="Preview" id="lightboxImg"
+        onclick="event.stopPropagation()">
+      <button class="lb-nav lb-next" id="lbNext"
+        onclick="event.stopPropagation();lightboxNav(1)"
+        aria-label="Selanjutnya">
+        <svg viewBox="0 0 24 24">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+      <div class="lb-counter" id="lbCounter"></div>
+    </div>
+  </div>
+
+  <script src="lana.js"></script>
+</body>
+</html>
